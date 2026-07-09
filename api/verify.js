@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
-    const { email } = req.query;
+    const { email, link } = req.query;
     const apikey = "dkf_7a6a25db";
-    const targetUrl = `https://am-prem.vxz.my.id/api/send?email=${email}&apikey=${apikey}`;
+    const targetUrl = `https://am-prem.vxz.my.id/api/verify?email=${email}&link=${encodeURIComponent(link)}&apply=true&apikey=${apikey}`;
 
     try {
         const response = await fetch(targetUrl);
