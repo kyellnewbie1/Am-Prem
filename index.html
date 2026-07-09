@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Am Premium Free By Kaishi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- SweetAlert2 untuk Notifikasi Kece -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at center, #0a192f 0%, #020c1b 100%);
+            color: #e6f1ff;
+            overflow-x: hidden;
+        }
+        .glow-text {
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+        }
+        .glow-btn {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        .glow-btn:hover {
+            box-shadow: 0 0 35px rgba(0, 212, 255, 0.8);
+            transform: translateY(-3px);
+        }
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animasi Latar Belakang -->
+    <div class="bg-animation opacity-20">
+        <div class="absolute w-96 h-96 bg-blue-500 rounded-full blur-3xl top-10 left-10 animate-pulse"></div>
+        <div class="absolute w-96 h-96 bg-cyan-500 rounded-full blur-3xl bottom-10 right-10 animate-pulse-slow"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="min-h-screen flex flex-col justify-between items-center p-4 md:p-8">
+        
+        <!-- Header / Logo -->
+        <header class="text-center my-6" data-aos="fade-down" data-aos-duration="1000">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 glow-text">
+                AM PREMIUM FREE
+            </h1>
+            <p class="text-cyan-300 font-medium tracking-widest text-xs md:text-sm mt-2 uppercase">
+                By Kaishi • Premium Generator
+            </p>
+        </header>
+
+        <!-- Main Card Form -->
+        <main class="w-full max-w-lg bg-slate-900/60 backdrop-blur-xl border border-cyan-500/30 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden" data-aos="zoom-in" data-aos-duration="1200">
+            <!-- Dekorasi Neon Line atas card -->
+            <div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400"></div>
+
+            <div class="text-center mb-6">
+                <i class="fa-solid fa-bolt text-4xl text-cyan-400 animate-bounce mb-2"></i>
+                <h2 class="text-xl font-semibold text-white">Bikin Akun AM Prem Instant</h2>
+                <p class="text-gray-400 text-xs">Silahkan pilih metode di bawah untuk memproses Alight Motion Premium kamu.</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 mb-6 text-sm">
+                <button onclick="switchTab('send')" id="btn-tab-send" class="w-1/2 py-2 px-4 rounded-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white transition-all duration-300">
+                    <i class="fa-solid fa-paper-plane mr-2"></i>Kirim Link
+                </button>
+                <button onclick="switchTab('verify')" id="btn-tab-verify" class="w-1/2 py-2 px-4 rounded-lg font-semibold text-gray-400 hover:text-white transition-all duration-300">
+                    <i class="fa-solid fa-user-check mr-2"></i>Verifikasi Akun
+                </button>
+            </div>
+
+            <!-- Form Section -->
+            <form id="amForm" onsubmit="handleSubmit(event)" class="space-y-5">
+                
+                <!-- Input Email -->
+                <div data-aos="fade-up">
+                    <label class="block text-xs font-semibold text-cyan-400 uppercase mb-2 tracking-wide">Email Alight Motion</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-cyan-500/70">
+                            <i class="fa-solid fa-envelope"></i>
+                        </span>
+                        <input type="email" id="email" required placeholder="contoh@gmail.com" 
+                            class="w-full pl-10 pr-4 py-3 bg-slate-950 border border-slate-800 rounded-xl focus:outline-none focus:border-cyan-400 text-white placeholder-gray-600 transition-all text-sm">
+                    </div>
+                </div>
+
+                <!-- Input Link -->
+                <div id="link-field" class="hidden" data-aos="fade-up">
+                    <label class="block text-xs font-semibold text-cyan-400 uppercase mb-2 tracking-wide">Link Verifikasi (Dari Email)</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-cyan-500/70">
+                            <i class="fa-solid fa-link"></i>
+                        </span>
+                        <input type="url" id="link_am" placeholder="https://alightmotion.com/..." 
+                            class="w-full pl-10 pr-4 py-3 bg-slate-950 border border-slate-800 rounded-xl focus:outline-none focus:border-cyan-400 text-white placeholder-gray-600 transition-all text-sm">
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="btn-submit" class="w-full glow-btn bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 text-white font-bold py-3.5 px-4 rounded-xl text-sm uppercase tracking-wider mt-4">
+                    <i class="fa-solid fa-circle-check mr-2"></i> Proses Sekarang
+                </button>
+            </form>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center my-6 text-xs text-gray-500 tracking-wide" data-aos="fade-up" data-aos-duration="1000">
+            <p>© 2026 <a href="https://am-prem.vxz.my.id/" target="_blank" class="text-cyan-400 hover:underline">Am Premium By Kaishi</a>. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <!-- JS Scripts & Logic -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        let currentMode = 'send'; // Default mode
+
+        function switchTab(mode) {
+            currentMode = mode;
+            const btnSend = document.getElementById('btn-tab-send');
+            const btnVerify = document.getElementById('btn-tab-verify');
+            const linkField = document.getElementById('link-field');
+            const linkInput = document.getElementById('link_am');
+
+            if (mode === 'send') {
+                btnSend.className = "w-1/2 py-2 px-4 rounded-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white transition-all duration-300";
+                btnVerify.className = "w-1/2 py-2 px-4 rounded-lg font-semibold text-gray-400 hover:text-white transition-all duration-300";
+                linkField.classList.add('hidden');
+                linkInput.removeAttribute('required');
+            } else {
+                btnVerify.className = "w-1/2 py-2 px-4 rounded-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white transition-all duration-300";
+                btnSend.className = "w-1/2 py-2 px-4 rounded-lg font-semibold text-gray-400 hover:text-white transition-all duration-300";
+                linkField.classList.remove('hidden');
+                linkInput.setAttribute('required', 'true');
+            }
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const link = document.getElementById('link_am').value;
+            const btnSubmit = document.getElementById('btn-submit');
+
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-2"></i> Memproses...`;
+
+            Swal.fire({
+                title: 'Sedang Memproses...',
+                text: 'Harap tunggu sebentar, permintaan sedang dialihkan dengan aman bypass CORS.',
+                allowOutsideClick: false,
+                background: '#0a192f',
+                color: '#fff',
+                didOpen: () => {
+                    Swal.showLoading()
+                }
+            });
+
+            // FIX: Menembak ke endpoint Vercel lokal (Membasmi CORS)
+            let apiUrl = "";
+            if (currentMode === 'send') {
+                apiUrl = `/api/send?email=${encodeURIComponent(email)}`;
+            } else {
+                apiUrl = `/api/verify?email=${encodeURIComponent(email)}&link=${encodeURIComponent(link)}`;
+            }
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i> Proses Sekarang`;
+
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: data.message || 'Proses sukses! Silahkan cek kelanjutannya.',
+                        background: '#0a192f',
+                        color: '#fff',
+                        confirmButtonColor: '#06b6d4'
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: data.message || 'Server merespon dengan kegagalan.',
+                        background: '#0a192f',
+                        color: '#fff',
+                        confirmButtonColor: '#ef4444'
+                    });
+                }
+
+            } catch (error) {
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i> Proses Sekarang`;
+                
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Sistem Error!',
+                    text: 'Gagal terhubung melalui Vercel Proxy. Pastikan folder /api/ sudah terunggah benar.',
+                    background: '#0a192f',
+                    color: '#fff',
+                    confirmButtonColor: '#ef4444'
+                });
+            }
+        }
+    </script>
+</body>
+</html>
